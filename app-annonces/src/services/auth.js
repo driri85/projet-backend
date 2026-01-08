@@ -2,7 +2,7 @@ const { where } = require("sequelize");
 const { dbInstance, User } = require("../models");
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-require('dotenv').config();
+require('dotenv').config({quiet: true});
 
 const register = async (req, res) => {
     const transaction = await dbInstance.transaction();

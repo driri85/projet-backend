@@ -1,7 +1,7 @@
 const { Op } = require('sequelize');
 const { Annonce, dbInstance } = require('../models');
 const { mailer } = require('../utils/mailer');
-require('dotenv').config();
+require('dotenv').config({quiet: true});
 
 const getAnnonceById = async (req, res) => {
     const id = req.params.id;

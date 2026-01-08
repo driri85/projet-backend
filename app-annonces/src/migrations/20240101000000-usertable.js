@@ -61,16 +61,11 @@ module.exports = {
           defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
         }
       }, { transaction: t });
-      await queryInterface.addColumn('Annonces', 'user_id', {
-        type: Sequelize.DataTypes.INTEGER,
-        references: {
-          model: 'Users',
-          key: 'id'
-        }
-      }, { transaction: t })
-      t.commit();
+
+      await t.commit();
     } catch(error) {
-      t.rollback();
+      await t.rollback();
+      throw error;
     }
   },
 
@@ -79,9 +74,10 @@ module.exports = {
     try {
       await queryInterface.removeColumn('Annonces', 'user_id', { transaction: t });
       await queryInterface.dropTable('Users', { transaction: t });
-      t.commit();
+      await t.commit();
     } catch (error) {
-      t.rollback();
+      await t.rollback();
+      throw error;
     }
   }
 };

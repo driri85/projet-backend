@@ -32,6 +32,14 @@ module.exports = {
         values: ['draft', 'published', 'suspended'],
         defaultValue: 'draft'
       },
+      user_id: {
+        allowNull: true,
+        type: Sequelize.DataTypes.INTEGER,
+        references: {
+          model: 'Users',
+          key: 'id'
+        }
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DataTypes.DATE,

@@ -13,9 +13,10 @@ module.exports = {
         type: Sequelize.DataTypes.STRING,
         allowNull: false
       }, { transaction });
-      transaction.commit();
+      await transaction.commit();
     } catch(error) {
-      transaction.rollback();
+      await transaction.rollback();
+      throw error;
     }
   },
 
@@ -24,9 +25,10 @@ module.exports = {
     try {
       await queryInterface.removeColumn('Users','username', { transaction });
       await queryInterface.removeColumn('Users','password', { transaction });
-      transaction.commit();
+      await transaction.commit();
     } catch(error) {
-      transaction.rollback();
+      await transaction.rollback();
+      throw error;
     }
   }
 };

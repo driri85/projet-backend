@@ -1,5 +1,5 @@
 const { createTransport } = require('nodemailer');
-require('dotenv').config();
+require('dotenv').config({quiet: true});
 
 const transporter = createTransport({
     host: process.env.MAILER_HOST,

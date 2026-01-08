@@ -15,7 +15,6 @@ const getAnnonceById = async (req, res) => {
 }
 
 const searchAnnonce = async (req, res) => {
-    // IMPROVMENT : Ajouter de la pagination, ajouter le nombre de résultats de recherche.
     const search_key = req.query.search;
     const conditions = (search_key) ? {
         where: {

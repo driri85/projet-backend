@@ -1,0 +1,22 @@
+name: CI/CD Full Backend App (Self-Hosted)
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Shut down old containers
+        run: docker compose down || true
+
+      - name: Build & Start
+        run: |
+          docker compose build
+          docker compose up -d

@@ -20,7 +20,22 @@ const createAdminComment = async (req, res) => {
     }
 };
 
+// Model-level helpers used by unit tests
+const create = async ({ annonce_id, admin_id, comment }) => {
+    return AdminComment.create({ annonce_id, admin_id, comment });
+};
+
+const getByAnnonceId = async (annonceId) => {
+    return AdminComment.findAll({
+        where: { annonce_id: annonceId },
+        include: ['Admin'],
+        order: [['createdAt', 'DESC']]
+    });
+};
+
 module.exports = {
     listByAnnonce,
-    createAdminComment
+    createAdminComment,
+    create,
+    getByAnnonceId
 };

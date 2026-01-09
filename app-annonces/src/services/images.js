@@ -33,8 +33,30 @@ const deleteImage = async (req, res) => {
     }
 };
 
+// Model-level helpers used by unit tests
+const create = async ({ annonce_id, url, ordering }) => {
+    return ImageAnnonce.create({ annonce_id, url, ordering });
+};
+
+const getByAnnonceId = async (annonceId) => {
+    return ImageAnnonce.findAll({
+        where: { annonce_id: annonceId },
+        order: [['ordering', 'ASC']]
+    });
+};
+
+const deleteImageById = async (id) => {
+    const image = await ImageAnnonce.findByPk(id);
+    if (!image) return false;
+    await image.destroy();
+    return true;
+};
+
 module.exports = {
     listByAnnonce,
     addImage,
-    deleteImage
+    deleteImage,
+    create,
+    getByAnnonceId,
+    delete: deleteImageById
 };

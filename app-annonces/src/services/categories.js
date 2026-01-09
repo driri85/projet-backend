@@ -60,10 +60,42 @@ const deleteCategory = async (req, res) => {
     }
 };
 
+// Model-level helpers used by unit tests
+const getAll = async () => {
+    return Category.findAll({ order: [['name', 'ASC']] });
+};
+
+const getById = async (id) => {
+    return Category.findByPk(id);
+};
+
+const create = async ({ name, description, slug }) => {
+    return Category.create({ name, description, slug });
+};
+
+const update = async (id, data) => {
+    const cat = await Category.findByPk(id);
+    if (!cat) return null;
+    await cat.update(data);
+    return cat;
+};
+
+const deleteCategoryById = async (id) => {
+    const cat = await Category.findByPk(id);
+    if (!cat) return false;
+    await cat.destroy();
+    return true;
+};
+
 module.exports = {
     listCategories,
     getCategoryById,
     createCategory,
     updateCategory,
-    deleteCategory
+    deleteCategory,
+    getAll,
+    getById,
+    create,
+    update,
+    delete: deleteCategoryById
 };

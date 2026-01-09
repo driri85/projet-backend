@@ -35,8 +35,29 @@ const updateSignalement = async (req, res) => {
     }
 };
 
+// Model-level helpers used by unit tests
+const create = async ({ annonce_id, email, message }) => {
+    return Signalement.create({ annonce_id, email, message, status: 'new' });
+};
+
+const getAll = async () => {
+    return Signalement.findAll({
+        include: ['Annonce', 'Admin'],
+        order: [['createdAt', 'DESC']]
+    });
+};
+
+const updateStatus = async (id, { status, admin_id, response }) => {
+    const sig = await Signalement.findByPk(id);
+    if (!sig) return null;
+    return sig.update({ status, admin_id, response, processedAt: new Date() });
+};
+
 module.exports = {
     createSignalement,
     listSignalements,
-    updateSignalement
+    updateSignalement,
+    create,
+    getAll,
+    updateStatus
 };

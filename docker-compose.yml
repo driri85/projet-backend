@@ -19,15 +19,18 @@ services:
     ports:
       - "3015:3000"
     networks:
-      - default
+      - projet-backend
     expose:
       - "3000"
     working_dir: '/home/app'
+    
   app-annonces-mailhog:
     image: mailhog/mailhog
     ports: 
       - 1025:1025 # smtp server
       - 8025:8025 # web ui
+    networks:
+      - projet-backend
   # database
   app-annonces-db:
     container_name: "app-annonces-db"
@@ -40,6 +43,8 @@ services:
       MARIADB_DATABASE: monannonce
     volumes:
       - './db-data:/var/lib/mysql:rw'
+    networks:
+      - projet-backend
   # Database client
   app-annonces-adminer:
     image: adminer
@@ -50,3 +55,5 @@ services:
       - 'app-annonces-db:db'
     ports:
       - 8095:8080
+    networks:
+      - projet-backend

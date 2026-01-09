@@ -4,5 +4,9 @@ ENV HOME=/home/app
 
 WORKDIR $HOME
 
-RUN npm install -g nodemon
+COPY app-annonces/package*.json ./
+
+RUN npm install -g nodemon && \
+    npm install
+
 EXPOSE 3000

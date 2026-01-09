@@ -6,10 +6,11 @@ require('dotenv').config({quiet: true});
 module.exports = {
   async up (queryInterface, Sequelize) {
     const hashpassword = await bcrypt.hash("MotDePasse123", parseInt(process.env.SALT));
+    await queryInterface.bulkDelete('Users',{ username: "contact@arsdv.site" });
     await queryInterface.bulkInsert('Users', [{
-      firstname: "Soufian",
-      lastname: "Admin",
-      username: "contact@soufian-a.net",
+      firstname: "Adrien",
+      lastname: "RANDONNET",
+      username: "contact@arsdv.site",
       password: hashpassword,
       role: 'admin',
       createdAt: new Date(),
@@ -18,6 +19,6 @@ module.exports = {
   },
 
   async down (queryInterface, Sequelize) {
-    await queryInterface.bulkDelete('Users',{ username: "contact@soufian-a.net" });
+    await queryInterface.bulkDelete('Users',{ username: "contact@arsdv.site" });
   }
 };

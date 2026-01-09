@@ -7,6 +7,12 @@ module.exports = {
     const password = 'TestPassword123';
     const hashedPassword = await bcrypt.hash(password, salt);
 
+    await queryInterface.sequelize.query('SET FOREIGN_KEY_CHECKS = 0');
+    await queryInterface.bulkDelete('Users', {
+      username: ['jean_dupont', 'marie_martin', 'pierre_bernard']
+    });
+    await queryInterface.sequelize.query('SET FOREIGN_KEY_CHECKS = 1');
+
     await queryInterface.bulkInsert('Users', [
       {
         firstname: 'Jean',

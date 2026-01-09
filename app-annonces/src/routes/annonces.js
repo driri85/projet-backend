@@ -4,7 +4,7 @@ const { validateAnnonce } = require('../middlewares/annonces');
 const { validateAuthentication } = require('../middlewares/auth');
 const { isAdmin } = require('../middlewares/users');
 
-const { deleteAnnonce, getAnnonceById, createAnnonce, searchAnnonce, updateAnnonce, multiplicate } = require('../services/annonces');
+const { deleteAnnonceHttp, getAnnonceByIdHttp, createAnnonceHttp, searchAnnonce, updateAnnonceHttp, multiplicate } = require('../services/annonces');
 
 router.get('/', searchAnnonce);
 
@@ -12,14 +12,14 @@ router.get('/all', validateAuthentication, isAdmin, (req, res, next) => {
     res.status(200).send();
 });
 
-router.get('/:id', getAnnonceById);
+router.get('/:id', getAnnonceByIdHttp);
 
 router.post('/multiplicate', multiplicate);
 
-router.post('/', validateAuthentication, validateAnnonce, createAnnonce);
+router.post('/', validateAuthentication, isAdmin, validateAnnonce, createAnnonceHttp);
 
-router.put('/:id', updateAnnonce);
+router.put('/:id', validateAuthentication, isAdmin, updateAnnonceHttp);
 
-router.delete('/:id', deleteAnnonce);
+router.delete('/:id', validateAuthentication, isAdmin, deleteAnnonceHttp);
 
 module.exports = router;

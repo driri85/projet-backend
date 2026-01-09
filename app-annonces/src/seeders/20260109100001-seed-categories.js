@@ -3,6 +3,10 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
+    await queryInterface.sequelize.query('SET FOREIGN_KEY_CHECKS = 0');
+    await queryInterface.bulkDelete('Categories', null, {});
+    await queryInterface.sequelize.query('ALTER TABLE Categories AUTO_INCREMENT = 1');
+    await queryInterface.sequelize.query('SET FOREIGN_KEY_CHECKS = 1');
     await queryInterface.bulkInsert('Categories', [
       { 
         name: 'Mobilier', 

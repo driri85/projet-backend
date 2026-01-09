@@ -76,8 +76,7 @@ const create = async ({ name, description, slug }) => {
 const update = async (id, data) => {
     const cat = await Category.findByPk(id);
     if (!cat) return null;
-    await cat.update(data);
-    return cat;
+    return cat.update(data);
 };
 
 const deleteCategoryById = async (id) => {

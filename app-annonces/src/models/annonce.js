@@ -8,6 +8,22 @@ const Annonce = (sequelize, DataTypes) => {
                 foreignKey: 'user_id',
                 as: 'User'
             });
+            this.belongsTo(model.Category, {
+                foreignKey: 'category_id',
+                as: 'Category'
+            });
+            this.hasMany(model.ImageAnnonce, {
+                foreignKey: 'annonce_id',
+                as: 'Images'
+            });
+            this.hasMany(model.AdminComment, {
+                foreignKey: 'annonce_id',
+                as: 'AdminComments'
+            });
+            this.hasMany(model.Signalement, {
+                foreignKey: 'annonce_id',
+                as: 'Signalements'
+            });
         }
     }
     

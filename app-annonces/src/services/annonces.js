@@ -15,6 +15,7 @@ const getAnnonceById = async (req, res) => {
 }
 
 const searchAnnonce = async (req, res) => {
+    // IMPROVMENT : Ajouter de la pagination, ajouter le nombre de résultats de recherche.
     const search_key = req.query.search;
     const conditions = (search_key) ? {
         where: {
@@ -30,13 +31,14 @@ const searchAnnonce = async (req, res) => {
 const createAnnonce = async (req, res) => {
     const transaction = await dbInstance.transaction();
     try {
-        const { title, description, price, filepath, status } = req.body;
+        const { title, description, price, filepath, status, category_id } = req.body;
         const annonce = await Annonce.create({
             title,
             description,
             price,
             filepath,
-            status
+            status,
+            category_id
         }, { transaction });
 
         // TODO: définition automatique de l'utilisateur auteur après l'authentification
@@ -69,14 +71,15 @@ const createAnnonce = async (req, res) => {
 const updateAnnonce = async (req, res) => {
     const transaction = await dbInstance.transaction();
     try {
-        const { title, description, price, filepath, status } = req.body;
+        const { title, description, price, filepath, status, category_id } = req.body;
         const { id } = req.params;
         const annonce = await Annonce.update({
             title,
             description,
             price,
             filepath,
-            status
+            status,
+            category_id
         }, {
             where: {
                 id
@@ -122,10 +125,23 @@ const deleteAnnonce = async (req, res) => {
     }
 }
 
+const multiplicated = (value1, value2) => {
+    return value1 * value2;
+}
+
+const multiplicate = (req, res, next) => {
+    const [ val1, val2 ] = req.body.items;
+    const result = multiplicated(val1, val2);
+    if(!result) return res.status(400).json({ message: "Format incorrect"});
+    return res.status(200).json({ result });
+}
+
 module.exports = {
     getAnnonceById,
     createAnnonce,
     searchAnnonce,
     updateAnnonce,
-    deleteAnnonce
+    deleteAnnonce,
+    multiplicated,
+    multiplicate
 };

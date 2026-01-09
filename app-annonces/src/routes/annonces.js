@@ -4,15 +4,17 @@ const { validateAnnonce } = require('../middlewares/annonces');
 const { validateAuthentication } = require('../middlewares/auth');
 const { isAdmin } = require('../middlewares/users');
 
-const { deleteAnnonce, getAnnonceById, createAnnonce, searchAnnonce, updateAnnonce } = require('../services/annonces');
+const { deleteAnnonce, getAnnonceById, createAnnonce, searchAnnonce, updateAnnonce, multiplicate } = require('../services/annonces');
 
 router.get('/', searchAnnonce);
 
-router.get('/all', (req, res, next) => {
+router.get('/all', validateAuthentication, isAdmin, (req, res, next) => {
     res.status(200).send();
 });
 
 router.get('/:id', getAnnonceById);
+
+router.post('/multiplicate', multiplicate);
 
 router.post('/', validateAuthentication, validateAnnonce, createAnnonce);
 

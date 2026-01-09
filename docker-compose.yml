@@ -16,6 +16,8 @@ services:
        - 'app-annonces-mailhog:mailhog'
     environment:
       - NODE_ENV=development
+      - SECRET_KEY=${SECRET_KEY:-dev-key-change-in-production}
+      - SALT=${SALT:-10}
     volumes:
       - './app-annonces:/home/app:rw'
     ports:

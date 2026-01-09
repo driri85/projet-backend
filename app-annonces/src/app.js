@@ -1,10 +1,11 @@
+require('dotenv').config({quiet: true});
+
 const express = require('express');
 const app = express();
 const initRoutes = require('./routes');
 const swaggerUi = require('swagger-ui-express');
 const YAML = require('yamljs');
 const path = require('path');
-require('dotenv').config({quiet: true});
 const db = require('./models');
 
 const swaggerDocument = YAML.load(path.join(__dirname, '../swagger.yaml'));

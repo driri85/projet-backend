@@ -6,7 +6,7 @@ require('dotenv').config({quiet: true});
 
 const db = {};
 
-const dbInstance = new Sequelize(`mariadb://root:root@db:3307/monannonce`);
+const dbInstance = new Sequelize(`mariadb://root:root@db:3306/monannonce`);
 
 fs
   .readdirSync(__dirname)

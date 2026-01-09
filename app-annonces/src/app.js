@@ -6,7 +6,7 @@ const YAML = require('yamljs');
 const path = require('path');
 require('dotenv').config({quiet: true});
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3015;
 
 const swaggerDocument = YAML.load(path.join(__dirname, '../swagger.yaml'));
 

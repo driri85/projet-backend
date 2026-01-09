@@ -57,3 +57,7 @@ services:
       - 8095:8080
     networks:
       - projet-backend
+
+networks:
+  projet-backend:
+    driver: bridge

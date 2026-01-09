@@ -25,6 +25,11 @@ jobs:
       - name: Shut down old containers
         run: docker compose down || true
 
+      - name: Recreate network
+        run: |
+          docker network rm projet-backend || true
+          docker network create projet-backend || true
+
       - name: Build & Start
         run: |
           docker compose build

@@ -10,21 +10,17 @@ jobs:
     runs-on: self-hosted
 
     steps:
-      - name: Clean workspace
+      - name: Clean workspace before checkout
         run: |
-          if [ -d "app-annonces/.npm" ]; then
-            sudo rm -rf app-annonces/.npm
-          fi
-          if [ -d "app-annonces/node_modules" ]; then
-            sudo rm -rf app-annonces/node_modules
-          fi
+          sudo rm -rf $GITHUB_WORKSPACE/*
+          sudo rm -rf $GITHUB_WORKSPACE/.[!.]*
         shell: bash
         continue-on-error: true
 
       - name: Checkout Code
         uses: actions/checkout@v4
         with: 
-          clean: true
+          clean: false
 
       - name: Shut down old containers
         run: docker compose down || true

@@ -8,16 +8,19 @@ require('dotenv').config({quiet: true});
 
 const PORT = process.env.PORT;
 
-// Load Swagger documentation
 const swaggerDocument = YAML.load(path.join(__dirname, '../swagger.yaml'));
 
 app.use(express.json());
 
-// Swagger UI
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 initRoutes(app);
 
-app.listen(PORT, () => {
-    console.log('Server running on port', PORT);
-});
+// Only start server if not in test mode
+if (process.env.NODE_ENV !== 'test') {
+    app.listen(PORT, () => {
+        console.log('Server running on port', PORT);
+    });
+}
+
+module.exports = app;

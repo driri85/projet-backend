@@ -4,7 +4,6 @@ const categoriesRoutes = require('./categories');
 const signalementsRoutes = require('./signalements');
 const adminCommentsRoutes = require('./admin-comments');
 const imagesRoutes = require('./images');
-// const userRoutes = require('./users');
 
 const initRoutes = (app) => {
     app.use('/', authRoutes);
@@ -18,7 +17,6 @@ const initRoutes = (app) => {
     app.use('/signalements', signalementsRoutes);
     app.use('/admin-comments', adminCommentsRoutes);
     app.use('/images', imagesRoutes);
-    // app.use(userRoutes);
 }
 
 module.exports = initRoutes;

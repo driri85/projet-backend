@@ -4,11 +4,6 @@ require('dotenv').config({quiet: true});
 const transporter = createTransport({
     host: process.env.MAILER_HOST,
     port: process.env.MAILER_PORT,
-    // secure: process.env.MAILER_SECURE,
-    // auth: {
-    //     user: process.env.MAILER_USERNAME,
-    //     pass: process.env.MAILER_PASSWORD
-    // }
 });
 
 const mailer = async (to, subject, text, html) => {

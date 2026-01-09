@@ -42,7 +42,6 @@ const login = async (req, res) => {
 
         const user = await User.findOne({
             where: { username }
-            // attributes: [ 'id', 'firstname', 'lastname', 'username', 'password' ]
         });
         if (!user) return res.status(404).json({ message: 'User not found' });
 

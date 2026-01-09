@@ -5,7 +5,6 @@ require('dotenv').config({quiet: true});
 
 const getAnnonceById = async (req, res) => {
     const id = req.params.id;
-    // const annonce = await Annonce.findByPk(id);
     const annonce = await Annonce.findOne({
         where: {
             id
@@ -15,7 +14,6 @@ const getAnnonceById = async (req, res) => {
 }
 
 const searchAnnonce = async (req, res) => {
-    // IMPROVMENT : Ajouter de la pagination, ajouter le nombre de résultats de recherche.
     const search_key = req.query.search;
     const conditions = (search_key) ? {
         where: {
@@ -40,10 +38,6 @@ const createAnnonce = async (req, res) => {
             status,
             category_id
         }, { transaction });
-
-        // TODO: définition automatique de l'utilisateur auteur après l'authentification
-
-        // notification de l'admin d'une nouvelle annonce publiée
         const info = await mailer(
             process.env.MAIL_ADMIN,
             'Nouvelle Annonce',

@@ -14,8 +14,6 @@ const validateAnnonce = async (req, res, next) => {
     next();
 }
 
-// autre fonction de validation
-
 module.exports = {
     validateAnnonce
 };

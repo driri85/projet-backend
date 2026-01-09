@@ -517,6 +517,65 @@ MAIL_ADMIN=admin@plateforme.com
 
 ---
 
+## 🧪 Tests
+
+### Lancer les tests
+
+```bash
+# Tous les tests
+docker exec app-annonces-API-nodejs npm test
+
+# Tests avec couverture
+docker exec app-annonces-API-nodejs npm test -- --coverage
+
+# Tests en mode watch
+docker exec app-annonces-API-nodejs npm test -- --watch
+```
+
+### Structure des tests
+
+```
+tests/
+├── functionnal/          # Tests d'intégration API
+│   ├── auth.test.js      # Authentification (register, login, logout)
+│   ├── annonces.test.js  # CRUD annonces + recherche
+│   ├── categories.test.js # CRUD catégories
+│   ├── signalements.test.js # Signalements publics + admin
+│   ├── admin-comments.test.js # Commentaires admin
+│   └── images.test.js    # Gestion images annonces
+└── unit/                 # Tests unitaires services
+    ├── categories.test.js
+    ├── signalements.test.js
+    ├── adminComments.test.js
+    └── images.test.js
+```
+
+### Fonctionnalités testées
+
+**Tests fonctionnels (Supertest):**
+- ✅ Authentification complète (inscription, connexion, déconnexion)
+- ✅ CRUD annonces avec filtres et recherche
+- ✅ CRUD catégories avec protection admin
+- ✅ Création signalements publics + gestion admin
+- ✅ Commentaires admin sur annonces
+- ✅ Gestion images avec ordonnancement
+
+**Tests unitaires (Jest mocks):**
+- ✅ Services métier isolés
+- ✅ Logique de création/mise à jour/suppression
+- ✅ Gestion des cas d'erreur et null
+
+### Compte admin de test
+
+```json
+{
+  "username": "contact@soufian-a.net",
+  "password": "MotDePasse123"
+}
+```
+
+---
+
 ## 📦 Technologies
 
 - **Runtime:** Node.js 24.x
@@ -526,6 +585,7 @@ MAIL_ADMIN=admin@plateforme.com
 - **Authentification:** JWT (jsonwebtoken)
 - **Validation:** express-validator
 - **Email:** Nodemailer + MailHog
+- **Tests:** Jest 30.x + Supertest 7.x
 - **Conteneurisation:** Docker + Docker Compose
 
 ---

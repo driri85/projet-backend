@@ -5,10 +5,11 @@
   "license": "ISC",
   "author": "Adrien Randonnet",
   "type": "commonjs",
-  "main": "src/app.js",
+  "main": "src/server.js",
   "scripts": {
-    "test": "jest",
-    "dev": "nodemon src/app.js"
+    "test": "NODE_ENV=test jest --detectOpenHandles --forceExit",
+    "dev": "nodemon src/server.js",
+    "start": "node src/server.js"
   },
   "dependencies": {
     "bcryptjs": "^3.0.3",

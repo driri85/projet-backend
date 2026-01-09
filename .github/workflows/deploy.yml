@@ -9,6 +9,22 @@ jobs:
   deploy:
     runs-on: self-hosted
 
+    env:
+      SECRET_JWT: ${{secrets.SECRET_JWT}}
+      SECRET_KEY: ${{secrets.SECRET_KEY}}
+      MAILER_HOST: ${{secrets.MAILER_HOST}}
+      MAILER_PORT: ${{secrets.MAILER_PORT}}
+      MAILER_SECURE: ${{secrets.MAILER_SECURE}}
+      MAIL_ADMIN: ${{secrets.MAIL_ADMIN}}
+      MAIL_FROM: ${{secrets.MAIL_FROM}}
+      MAIL_TO: ${{secrets.MAIL_TO}}
+      MARIADB_DATABASE: ${{secrets.MARIADB_DATABASE}}
+      MARIADB_HOST: ${{secrets.MARIADB_HOST}}
+      MARIADB_PASSWORD: ${{secrets.MARIADB_PASSWORD}}
+      MARIADB_PORT: ${{secrets.MARIADB_PORT}}
+      MARIADB_USERNAME: ${{secrets.MARIADB_USERNAME}}
+      SALT: ${{secrets.SALT}}
+
     steps:
       - name: Clean workspace before checkout
         run: |

@@ -30,10 +30,10 @@ jobs:
           docker network rm projet-backend || true
           docker network create projet-backend || true
 
-      - name: Build & Start
+      - name: Build & Start (DB and infra first)
         run: |
           docker compose build
-          docker compose up -d
+          docker compose up -d app-annonces-db app-annonces-mailhog app-annonces-adminer
 
       - name: Install node dependencies in container
         run: docker exec app-annonces-API-nodejs npm install
@@ -47,8 +47,11 @@ jobs:
       - name: Wait for database
         run: |
           echo "Waiting for database to be ready..."
-          timeout 90 bash -c 'until docker exec app-annonces-db mysqladmin ping -uroot -proot --silent; do echo "Waiting..."; sleep 2; done'
+          timeout 180 bash -c 'until docker exec app-annonces-db mariadb -h 127.0.0.1 -uroot -proot -e "SELECT 1" >/dev/null 2>&1; do echo "Waiting..."; sleep 3; done'
           echo "Database is ready!"
+
+      - name: Start application service
+        run: docker compose up -d app-annonces-node
 
       - name: Reset and run migrations
         run: |

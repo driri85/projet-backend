@@ -47,11 +47,11 @@ services:
       - './db-data:/var/lib/mysql:rw'
       - './db-config/custom.cnf:/etc/mysql/conf.d/custom.cnf:ro'
     healthcheck:
-      test: ["CMD-SHELL", "mysqladmin ping -uroot -proot --silent || exit 1"]
-      interval: 3s
-      timeout: 3s
-      retries: 30
-      start_period: 5s
+      test: ["CMD", "mariadb", "-h", "127.0.0.1", "-uroot", "-proot", "-e", "SELECT 1"]
+      interval: 5s
+      timeout: 5s
+      retries: 50
+      start_period: 30s
     networks:
       - projet-backend
   # Database client

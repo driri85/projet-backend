@@ -3,20 +3,20 @@
 module.exports = {
   async up (queryInterface, Sequelize) {
     // Get user and category IDs
-    const users = await queryInterface.sequelize.query(
+    const [users] = await queryInterface.sequelize.query(
       "SELECT id FROM Users WHERE username IN ('jean_dupont', 'marie_martin', 'pierre_bernard') LIMIT 3"
     );
-    const categories = await queryInterface.sequelize.query(
+    const [categories] = await queryInterface.sequelize.query(
       "SELECT id FROM Categories ORDER BY id LIMIT 6"
     );
 
-    if (users[0].length === 0 || categories[0].length === 0) {
+    if (users.length === 0 || categories.length === 0) {
       console.log('Skipping annonces seeder: users or categories not found');
       return;
     }
 
-    const userIds = users[0].map(u => u.id);
-    const categoryIds = categories[0].map(c => c.id);
+    const userIds = users.map(u => u.id);
+    const categoryIds = categories.map(c => c.id);
 
     await queryInterface.bulkInsert('Annonces', [
       {

@@ -3,11 +3,13 @@
 module.exports = {
   async up (queryInterface, Sequelize) {
     // Get user and category IDs
-    const [users] = await queryInterface.sequelize.query(
-      "SELECT id FROM Users WHERE username IN ('jean_dupont', 'marie_martin', 'pierre_bernard') LIMIT 3"
+    const users = await queryInterface.sequelize.query(
+      "SELECT id FROM Users WHERE username IN ('jean_dupont', 'marie_martin', 'pierre_bernard') LIMIT 3",
+      { type: Sequelize.QueryTypes.SELECT }
     );
-    const [categories] = await queryInterface.sequelize.query(
-      "SELECT id FROM Categories ORDER BY id LIMIT 6"
+    const categories = await queryInterface.sequelize.query(
+      "SELECT id FROM Categories ORDER BY id LIMIT 6",
+      { type: Sequelize.QueryTypes.SELECT }
     );
 
     if (users.length === 0 || categories.length === 0) {

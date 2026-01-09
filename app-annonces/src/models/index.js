@@ -18,6 +18,7 @@ const dbInstance = new Sequelize(
     logging: false,
     pool: { max: 10, min: 0, idle: 10000, acquire: 60000 },
     dialectOptions: { connectTimeout: 60000 },
+    retry: { max: 5 },
   }
 );
 

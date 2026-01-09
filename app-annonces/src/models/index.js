@@ -6,7 +6,7 @@ require('dotenv').config({quiet: true});
 
 const db = {};
 
-const dbInstance = new Sequelize(`mariadb://${process.env.MARIADB_USERNAME || 'root'}:${process.env.MARIADB_PASSWORD || 'root'}@${process.env.MARIADB_HOST || 'db'}:${process.env.MARIADB_PORT || 3306}/${process.env.MARIADB_DATABASE || 'monannonce'}`);
+const dbInstance = new Sequelize(`mariadb://${process.env.MARIADB_USERNAME || 'root'}:${process.env.MARIADB_PASSWORD || 'root'}@${process.env.MARIADB_HOST || 'db'}:${process.env.MARIADB_PORT || 3307}/${process.env.MARIADB_DATABASE || 'monannonce'}`);
 
 fs
   .readdirSync(__dirname)

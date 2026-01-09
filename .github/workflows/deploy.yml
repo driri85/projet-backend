@@ -10,8 +10,22 @@ jobs:
     runs-on: self-hosted
 
     steps:
+      - name: Clean workspace
+        run: |
+          if [ -d "app-annonces/.npm" ]; then
+            sudo rm -rf app-annonces/.npm
+          fi
+          if [ -d "app-annonces/node_modules" ]; then
+            sudo rm -rf app-annonces/node_modules
+          fi
+        shell: bash
+        continue-on-error: true
+
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+        with:
+          clean: true
+          force: true
 
       - name: Shut down old containers
         run: docker compose down || true
@@ -20,3 +34,16 @@ jobs:
         run: |
           docker compose build
           docker compose up -d
+
+      - name: Wait for services
+        run: sleep 10
+
+      - name: Run migrations
+        run: docker exec app-annonces-API-nodejs npx sequelize-cli db:migrate
+
+      - name: Run seeders
+        run: docker exec app-annonces-API-nodejs npx sequelize-cli db:seed:all
+
+      - name: Run tests
+        run: docker exec app-annonces-API-nodejs npm test
+        continue-on-error: true

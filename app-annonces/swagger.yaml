@@ -1,0 +1,594 @@
+openapi: 3.0.3
+info:
+  title: API Plateforme de Gestion d'Annonces
+  description: |
+    API RESTful pour une plateforme de publication, gestion et consultation d'annonces.
+    
+    ## Fonctionnalités
+    - **Authentification JWT** : Système d'inscription, connexion et gestion de session
+    - **Gestion d'annonces** : CRUD complet avec catégorisation et images multiples
+    - **Modération** : Signalements publics et commentaires administrateurs
+    - **Catégories** : Organisation hiérarchique des annonces
+    
+    ## Acteurs
+    - **Seller** : Peut publier, modifier et supprimer ses annonces
+    - **Admin** : Modère les annonces, gère les signalements et commentaires
+    - **Visiteur** : Consulte les annonces et peut les signaler
+    
+    ## Authentification
+    L'API utilise JWT (JSON Web Token). Pour accéder aux routes protégées :
+    ```
+    Authorization: <votre_token_jwt>
+    ```
+    
+  version: 2.0.0
+  contact:
+    name: Support API
+    email: contact@arsdv.site
+  license:
+    name: MIT
+
+servers:
+  - url: http://localhost:3000
+    description: Serveur de développement local
+
+tags:
+  - name: Auth
+    description: Authentification et gestion de session
+  - name: Annonces
+    description: Gestion des annonces
+  - name: Categories
+    description: Catégories d'annonces
+  - name: Signalements
+    description: Signalement d'annonces problématiques
+  - name: Admin Comments
+    description: Commentaires administrateurs sur annonces
+  - name: Images
+    description: Gestion des images d'annonces
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Token JWT obtenu via /login
+
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        firstname:
+          type: string
+          example: Jean
+        lastname:
+          type: string
+          example: Dupont
+        username:
+          type: string
+          example: jean.dupont@example.com
+        profil_picture:
+          type: string
+          nullable: true
+        phone_number:
+          type: string
+          nullable: true
+        address:
+          type: string
+          nullable: true
+        zip_code:
+          type: string
+          nullable: true
+        city:
+          type: string
+          nullable: true
+        role:
+          type: string
+          enum: [admin, seller]
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+
+    UserRegister:
+      type: object
+      required:
+        - firstname
+        - lastname
+        - username
+        - password
+      properties:
+        firstname:
+          type: string
+        lastname:
+          type: string
+        username:
+          type: string
+        password:
+          type: string
+          format: password
+          minLength: 8
+        profil_picture:
+          type: string
+        phone_number:
+          type: string
+        address:
+          type: string
+        zip_code:
+          type: string
+        city:
+          type: string
+
+    UserLogin:
+      type: object
+      required:
+        - username
+        - password
+      properties:
+        username:
+          type: string
+          example: contact@arsdv.site
+        password:
+          type: string
+          format: password
+          example: MotDePasse123
+
+    Category:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+        slug:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+
+    Annonce:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        description:
+          type: string
+        price:
+          type: number
+          format: float
+        filepath:
+          type: string
+          nullable: true
+        status:
+          type: string
+          enum: [draft, published, suspended]
+        user_id:
+          type: integer
+          nullable: true
+        category_id:
+          type: integer
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+
+    Signalement:
+      type: object
+      properties:
+        id:
+          type: integer
+        annonce_id:
+          type: integer
+        email:
+          type: string
+          format: email
+        message:
+          type: string
+        status:
+          type: string
+          enum: [new, in-progress, processed, rejected]
+        response:
+          type: string
+          nullable: true
+        processedAt:
+          type: string
+          format: date-time
+          nullable: true
+        admin_id:
+          type: integer
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+
+    AdminComment:
+      type: object
+      properties:
+        id:
+          type: integer
+        annonce_id:
+          type: integer
+        admin_id:
+          type: integer
+        comment:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+
+    ImageAnnonce:
+      type: object
+      properties:
+        id:
+          type: integer
+        annonce_id:
+          type: integer
+        url:
+          type: string
+        ordering:
+          type: integer
+        createdAt:
+          type: string
+          format: date-time
+
+paths:
+  /register:
+    post:
+      tags: [Auth]
+      summary: Créer un compte
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserRegister'
+      responses:
+        '201':
+          description: Compte créé
+        '400':
+          description: Erreur validation
+
+  /login:
+    post:
+      tags: [Auth]
+      summary: Se connecter
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserLogin'
+      responses:
+        '200':
+          description: Connexion réussie
+
+  /logout:
+    post:
+      tags: [Auth]
+      summary: Se déconnecter
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Déconnexion réussie
+
+  /home:
+    get:
+      tags: [Auth]
+      summary: Test endpoint
+      responses:
+        '200':
+          description: API OK
+
+  /categories:
+    get:
+      tags: [Categories]
+      summary: Lister les catégories
+      responses:
+        '200':
+          description: Liste des catégories
+    post:
+      tags: [Categories]
+      summary: "[ADMIN] Créer une catégorie"
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name, slug]
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+                slug:
+                  type: string
+      responses:
+        '201':
+          description: Catégorie créée
+
+  /categories/{id}:
+    get:
+      tags: [Categories]
+      summary: Obtenir une catégorie
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Détails
+    put:
+      tags: [Categories]
+      summary: "[ADMIN] Modifier"
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Modifié
+    delete:
+      tags: [Categories]
+      summary: "[ADMIN] Supprimer"
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Supprimé
+
+  /annonces:
+    get:
+      tags: [Annonces]
+      summary: Rechercher annonces
+      parameters:
+        - name: search
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Liste
+    post:
+      tags: [Annonces]
+      summary: Créer annonce
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Annonce'
+      responses:
+        '201':
+          description: Créée
+
+  /annonces/{id}:
+    get:
+      tags: [Annonces]
+      summary: Obtenir annonce
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Détails
+    put:
+      tags: [Annonces]
+      summary: Modifier annonce
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Annonce'
+      responses:
+        '200':
+          description: Modifiée
+    delete:
+      tags: [Annonces]
+      summary: Supprimer annonce
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Supprimée
+
+  /signalements:
+    get:
+      tags: [Signalements]
+      summary: "[ADMIN] Lister signalements"
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Liste
+    post:
+      tags: [Signalements]
+      summary: Signaler annonce
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [annonce_id, email, message]
+              properties:
+                annonce_id:
+                  type: integer
+                email:
+                  type: string
+                message:
+                  type: string
+      responses:
+        '201':
+          description: Signalement créé
+
+  /signalements/{id}:
+    patch:
+      tags: [Signalements]
+      summary: "[ADMIN] Traiter signalement"
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                response:
+                  type: string
+      responses:
+        '200':
+          description: Mis à jour
+
+  /admin-comments/{annonceId}:
+    get:
+      tags: [Admin Comments]
+      summary: "[ADMIN] Lister commentaires"
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: annonceId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Liste
+
+  /admin-comments:
+    post:
+      tags: [Admin Comments]
+      summary: "[ADMIN] Ajouter commentaire"
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [annonce_id, comment]
+              properties:
+                annonce_id:
+                  type: integer
+                comment:
+                  type: string
+      responses:
+        '201':
+          description: Créé
+
+  /images/{annonceId}:
+    get:
+      tags: [Images]
+      summary: Lister images annonce
+      parameters:
+        - name: annonceId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Liste
+
+  /images:
+    post:
+      tags: [Images]
+      summary: "[ADMIN] Ajouter image"
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [annonce_id, url]
+              properties:
+                annonce_id:
+                  type: integer
+                url:
+                  type: string
+                ordering:
+                  type: integer
+      responses:
+        '201':
+          description: Ajoutée
+
+  /images/{id}:
+    delete:
+      tags: [Images]
+      summary: "[ADMIN] Supprimer image"
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Supprimée

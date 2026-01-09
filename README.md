@@ -502,7 +502,7 @@ projet-backend/
 ### Variables d'environnement (.env)
 
 ```env
-PORT=3000
+PORT=3015
 MARIADB_HOST=db
 MARIADB_PORT=3307
 MARIADB_USERNAME=root

@@ -47,7 +47,7 @@ services:
       - './db-data:/var/lib/mysql:rw'
       - './db-config/custom.cnf:/etc/mysql/conf.d/custom.cnf:ro'
     healthcheck:
-      test: ["CMD", "mariadb", "-h", "127.0.0.1", "-uroot", "-proot", "-e", "SELECT 1"]
+      test: ["CMD-SHELL", "mysqladmin ping -uroot -proot --silent || exit 1"]
       interval: 5s
       timeout: 5s
       retries: 50

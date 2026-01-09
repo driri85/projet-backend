@@ -44,14 +44,6 @@ jobs:
       - name: Start application service
         run: docker compose up -d app-annonces-node
 
-      - name: Install node dependencies in container
-        run: docker exec app-annonces-API-nodejs npm install
-
-      - name: Wait for node modules (sequelize cli)
-        run: |
-          echo "Waiting for sequelize to be available..."
-          timeout 120 bash -c 'until docker exec app-annonces-API-nodejs ls node_modules/.bin/sequelize >/dev/null 2>&1; do echo "Waiting..."; sleep 2; done'
-          echo "Node modules ready"
 
       - name: Reset and run migrations
         run: |

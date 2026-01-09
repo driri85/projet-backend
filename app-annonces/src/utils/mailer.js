@@ -15,8 +15,6 @@ const mailer = async (to, subject, text, html) => {
             text,
             html
         });
-
-        console.log("Message sent: %s", info.messageId);
         return true;
     } catch(error) {
         return error;

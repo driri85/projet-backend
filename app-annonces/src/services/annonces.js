@@ -44,7 +44,6 @@ const createAnnonce = async (req, res) => {
             'Email de confirmation - Une nouvelle annonce à été créer',
             '<html><h1>Email de confirmation</h1><br><p>Une nouvelle annonce à été créer.</p></html>'
         );
-        console.log(info);
 
         transaction.commit();
         return res.status(201).json({

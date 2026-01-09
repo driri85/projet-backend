@@ -13,7 +13,6 @@ module.exports = {
     );
 
     if (users.length === 0 || categories.length === 0) {
-      console.log('Skipping annonces seeder: users or categories not found');
       return;
     }
 

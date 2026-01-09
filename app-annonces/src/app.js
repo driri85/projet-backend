@@ -19,6 +19,6 @@ initRoutes(app);
 // Attempt DB connection at startup for visibility
 db.dbInstance.authenticate()
 	.then(() => console.log('Database connection OK'))
-	.catch((err) => console.error('Database connection failed:', err.message));
+	.catch((err) => console.error('Database connection failed: \n   ', err.message));
 
 module.exports = app;

@@ -39,22 +39,17 @@ const register = async (req, res) => {
 const login = async (req, res) => {
     try {
         const { username, password } = req.body;
-        console.log("1")
 
         const user = await User.findOne({
             where: { username }
         });
-        console.log("2")
         if (!user) return res.status(404).json({ message: 'User not found' });
 
         const isValid = await bcrypt.compare(password, user.password);
-        if(!isValid) return res.status(401).json({ message: 'Unauthorized !'});
-        console.log("3")
 
-        console.log(process.env.SECRET_KEY)
+        if(!isValid) return res.status(401).json({ message: 'Unauthorized !'});
 
         const token = jwt.sign({ id: user.id, role: user.role }, process.env.SECRET_KEY, { expiresIn: '1h' });
-        console.log("4")
 
         user.token = token;
         user.save();

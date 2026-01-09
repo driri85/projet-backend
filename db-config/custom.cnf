@@ -1,0 +1,7 @@
+[mysqld]
+skip_name_resolve=ON
+wait_timeout=600
+interactive_timeout=600
+max_connections=200
+innodb_buffer_pool_size=128M
+# Reduce DNS lookups and idle disconnect noise

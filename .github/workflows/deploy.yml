@@ -10,7 +10,6 @@ jobs:
     runs-on: self-hosted
 
     env:
-      SECRET_JWT: ${{secrets.SECRET_JWT}}
       SECRET_KEY: ${{secrets.SECRET_KEY}}
       MAILER_HOST: ${{secrets.MAILER_HOST}}
       MAILER_PORT: ${{secrets.MAILER_PORT}}

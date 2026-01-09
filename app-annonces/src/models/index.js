@@ -6,7 +6,20 @@ require('dotenv').config({quiet: true});
 
 const db = {};
 
-const dbInstance = new Sequelize(`mariadb://${process.env.MARIADB_USERNAME || 'root'}:${process.env.MARIADB_PASSWORD || 'root'}@${process.env.MARIADB_HOST || 'db'}:${process.env.MARIADB_PORT || 3307}/${process.env.MARIADB_DATABASE || 'monannonce'}`);
+// Use explicit options; default to container internal port 3306
+const dbInstance = new Sequelize(
+  process.env.MARIADB_DATABASE || 'monannonce',
+  process.env.MARIADB_USERNAME || 'root',
+  process.env.MARIADB_PASSWORD || 'root',
+  {
+    host: process.env.MARIADB_HOST || 'db',
+    port: Number(process.env.MARIADB_PORT) || 3306,
+    dialect: 'mariadb',
+    logging: false,
+    pool: { max: 10, min: 0, idle: 10000, acquire: 60000 },
+    dialectOptions: { connectTimeout: 60000 },
+  }
+);
 
 fs
   .readdirSync(__dirname)

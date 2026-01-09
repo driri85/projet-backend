@@ -51,6 +51,8 @@ const login = async (req, res) => {
         if(!isValid) return res.status(401).json({ message: 'Unauthorized !'});
         console.log("3")
 
+        console.log(process.env.SECRET_KEY)
+
         const token = jwt.sign({ id: user.id, role: user.role }, process.env.SECRET_KEY, { expiresIn: '1h' });
         console.log("4")
 

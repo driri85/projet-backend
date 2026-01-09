@@ -17,7 +17,7 @@ services:
     volumes:
       - './app-annonces:/home/app:rw'
     ports:
-      - "3000:3000"
+      - "3015:3000"
     networks:
       - default
     expose:
@@ -48,4 +48,4 @@ services:
     links:
       - 'app-annonces-db:db'
     ports:
-      - 8080:8080
+      - 8095:8080

@@ -1,0 +1,771 @@
+Run docker exec app-annonces-API-nodejs npm test
+  
+> app-annonces@1.0.0 test
+> NODE_ENV=test jest --detectOpenHandles --forceExit
+PASS tests/unit/annonces.test.js
+  Annonces Service - Unit Tests
+    getAnnonceById
+      ✓ Should return annonce by id (11 ms)
+      ✓ Should return null for non-existent annonce (4 ms)
+    searchAnnonce
+      ✓ Should return all annonces when no search key provided (5 ms)
+      ✓ Should return filtered annonces with search key (4 ms)
+    createAnnonce
+      ✓ Should create annonce successfully (2 ms)
+      ✓ Should handle creation error (3 ms)
+    updateAnnonce
+      ✓ Should update annonce successfully (2 ms)
+      ✓ Should handle update error (2 ms)
+    deleteAnnonce
+      ✓ Should delete annonce successfully (3 ms)
+      ✓ Should handle delete error (3 ms)
+    multiplicated
+      ✓ Should multiply two numbers correctly (2 ms)
+      ✓ Should handle zero multiplication (1 ms)
+      ✓ Should handle negative numbers (1 ms)
+    multiplicate
+      ✓ Should multiply array values and return result (2 ms)
+      ✓ Should handle invalid format (2 ms)
+      ✓ Should handle zero result (2 ms)
+  console.log
+    Database connection OK
+      at log (src/app.js:21:22)
+FAIL tests/functionnal/annonces.test.js
+  Annonces API - Functional Tests
+    GET /annonces
+      ✕ Should return list of published annonces (public)
+      ✕ Should filter annonces by category (1 ms)
+      ✕ Should search annonces by keyword
+    GET /annonces/:id
+      ✕ Should return annonce details by id (public) (1 ms)
+      ✕ Should return 404 for non-existent annonce
+    POST /annonces
+      ✕ Should create annonce with admin token (1 ms)
+      ✕ Should reject annonce creation without token
+      ✕ Should reject annonce with invalid data
+    PUT /annonces/:id
+      ✕ Should update annonce with admin token
+      ✕ Should reject update without token
+      ✕ Should return 404 for updating non-existent annonce (1 ms)
+    DELETE /annonces/:id
+      ✕ Should delete annonce with admin token
+      ✕ Should reject deletion without token
+      ✕ Should return 404 for deleting non-existent annonce
+    POST /annonces/multiplicate
+      ✕ Retourne le résultat 8 pour l'opération 2x4
+      ✕ Retourne un code erreur 400 si j'envoi des items au mauvais format
+  ● Annonces API - Functional Tests › GET /annonces › Should return list of published annonces (public)
+    TypeError: Cannot read properties of null (reading 'id')
+      26 |         // Get admin user id
+      27 |         const admin = await User.findOne({ where: { username: 'contact@arsdv.site' } });
+    > 28 |         testUserId = admin.id;
+         |                            ^
+      29 |     });
+      30 |
+      31 |     afterAll(async () => {
+      at Object.id (tests/functionnal/annonces.test.js:28:28)
+  ● Annonces API - Functional Tests › GET /annonces › Should filter annonces by category
+    TypeError: Cannot read properties of null (reading 'id')
+      26 |         // Get admin user id
+      27 |         const admin = await User.findOne({ where: { username: 'contact@arsdv.site' } });
+    > 28 |         testUserId = admin.id;
+         |                            ^
+      29 |     });
+      30 |
+      31 |     afterAll(async () => {
+      at Object.id (tests/functionnal/annonces.test.js:28:28)
+  ● Annonces API - Functional Tests › GET /annonces › Should search annonces by keyword
+    TypeError: Cannot read properties of null (reading 'id')
+      26 |         // Get admin user id
+      27 |         const admin = await User.findOne({ where: { username: 'contact@arsdv.site' } });
+    > 28 |         testUserId = admin.id;
+         |                            ^
+      29 |     });
+      30 |
+      31 |     afterAll(async () => {
+      at Object.id (tests/functionnal/annonces.test.js:28:28)
+  ● Annonces API - Functional Tests › GET /annonces/:id › Should return annonce details by id (public)
+    TypeError: Cannot read properties of null (reading 'id')
+      26 |         // Get admin user id
+      27 |         const admin = await User.findOne({ where: { username: 'contact@arsdv.site' } });
+    > 28 |         testUserId = admin.id;
+         |                            ^
+      29 |     });
+      30 |
+      31 |     afterAll(async () => {
+      at Object.id (tests/functionnal/annonces.test.js:28:28)
+  ● Annonces API - Functional Tests › GET /annonces/:id › Should return 404 for non-existent annonce
+    TypeError: Cannot read properties of null (reading 'id')
+      26 |         // Get admin user id
+      27 |         const admin = await User.findOne({ where: { username: 'contact@arsdv.site' } });
+    > 28 |         testUserId = admin.id;
+         |                            ^
+      29 |     });
+      30 |
+      31 |     afterAll(async () => {
+      at Object.id (tests/functionnal/annonces.test.js:28:28)
+  ● Annonces API - Functional Tests › POST /annonces › Should create annonce with admin token
+    TypeError: Cannot read properties of null (reading 'id')
+      26 |         // Get admin user id
+      27 |         const admin = await User.findOne({ where: { username: 'contact@arsdv.site' } });
+    > 28 |         testUserId = admin.id;
+         |                            ^
+      29 |     });
+      30 |
+      31 |     afterAll(async () => {
+      at Object.id (tests/functionnal/annonces.test.js:28:28)
+  ● Annonces API - Functional Tests › POST /annonces › Should reject annonce creation without token
+    TypeError: Cannot read properties of null (reading 'id')
+      26 |         // Get admin user id
+      27 |         const admin = await User.findOne({ where: { username: 'contact@arsdv.site' } });
+    > 28 |         testUserId = admin.id;
+         |                            ^
+      29 |     });
+      30 |
+      31 |     afterAll(async () => {
+      at Object.id (tests/functionnal/annonces.test.js:28:28)
+  ● Annonces API - Functional Tests › POST /annonces › Should reject annonce with invalid data
+    TypeError: Cannot read properties of null (reading 'id')
+      26 |         // Get admin user id
+      27 |         const admin = await User.findOne({ where: { username: 'contact@arsdv.site' } });
+    > 28 |         testUserId = admin.id;
+         |                            ^
+      29 |     });
+      30 |
+      31 |     afterAll(async () => {
+      at Object.id (tests/functionnal/annonces.test.js:28:28)
+  ● Annonces API - Functional Tests › PUT /annonces/:id › Should update annonce with admin token
+    TypeError: Cannot read properties of null (reading 'id')
+      26 |         // Get admin user id
+      27 |         const admin = await User.findOne({ where: { username: 'contact@arsdv.site' } });
+    > 28 |         testUserId = admin.id;
+         |                            ^
+      29 |     });
+      30 |
+      31 |     afterAll(async () => {
+      at Object.id (tests/functionnal/annonces.test.js:28:28)
+  ● Annonces API - Functional Tests › PUT /annonces/:id › Should reject update without token
+    TypeError: Cannot read properties of null (reading 'id')
+      26 |         // Get admin user id
+      27 |         const admin = await User.findOne({ where: { username: 'contact@arsdv.site' } });
+    > 28 |         testUserId = admin.id;
+         |                            ^
+      29 |     });
+      30 |
+      31 |     afterAll(async () => {
+      at Object.id (tests/functionnal/annonces.test.js:28:28)
+  ● Annonces API - Functional Tests › PUT /annonces/:id › Should return 404 for updating non-existent annonce
+    TypeError: Cannot read properties of null (reading 'id')
+      26 |         // Get admin user id
+      27 |         const admin = await User.findOne({ where: { username: 'contact@arsdv.site' } });
+    > 28 |         testUserId = admin.id;
+         |                            ^
+      29 |     });
+      30 |
+      31 |     afterAll(async () => {
+      at Object.id (tests/functionnal/annonces.test.js:28:28)
+  ● Annonces API - Functional Tests › DELETE /annonces/:id › Should delete annonce with admin token
+    TypeError: Cannot read properties of null (reading 'id')
+      26 |         // Get admin user id
+      27 |         const admin = await User.findOne({ where: { username: 'contact@arsdv.site' } });
+    > 28 |         testUserId = admin.id;
+         |                            ^
+      29 |     });
+      30 |
+      31 |     afterAll(async () => {
+      at Object.id (tests/functionnal/annonces.test.js:28:28)
+  ● Annonces API - Functional Tests › DELETE /annonces/:id › Should reject deletion without token
+    TypeError: Cannot read properties of null (reading 'id')
+      26 |         // Get admin user id
+      27 |         const admin = await User.findOne({ where: { username: 'contact@arsdv.site' } });
+    > 28 |         testUserId = admin.id;
+         |                            ^
+      29 |     });
+      30 |
+      31 |     afterAll(async () => {
+      at Object.id (tests/functionnal/annonces.test.js:28:28)
+  ● Annonces API - Functional Tests › DELETE /annonces/:id › Should return 404 for deleting non-existent annonce
+    TypeError: Cannot read properties of null (reading 'id')
+      26 |         // Get admin user id
+      27 |         const admin = await User.findOne({ where: { username: 'contact@arsdv.site' } });
+    > 28 |         testUserId = admin.id;
+         |                            ^
+      29 |     });
+      30 |
+      31 |     afterAll(async () => {
+      at Object.id (tests/functionnal/annonces.test.js:28:28)
+  ● Annonces API - Functional Tests › POST /annonces/multiplicate › Retourne le résultat 8 pour l'opération 2x4
+    TypeError: Cannot read properties of null (reading 'id')
+      26 |         // Get admin user id
+      27 |         const admin = await User.findOne({ where: { username: 'contact@arsdv.site' } });
+    > 28 |         testUserId = admin.id;
+         |                            ^
+      29 |     });
+      30 |
+      31 |     afterAll(async () => {
+      at Object.id (tests/functionnal/annonces.test.js:28:28)
+  ● Annonces API - Functional Tests › POST /annonces/multiplicate › Retourne un code erreur 400 si j'envoi des items au mauvais format
+    TypeError: Cannot read properties of null (reading 'id')
+      26 |         // Get admin user id
+      27 |         const admin = await User.findOne({ where: { username: 'contact@arsdv.site' } });
+    > 28 |         testUserId = admin.id;
+         |                            ^
+      29 |     });
+      30 |
+      31 |     afterAll(async () => {
+      at Object.id (tests/functionnal/annonces.test.js:28:28)
+  console.log
+    Database connection OK
+      at log (src/app.js:21:22)
+FAIL tests/functionnal/categories.test.js
+  Categories API - Functional Tests
+    GET /categories
+      ✓ Should return list of categories (16 ms)
+    GET /categories/:id
+      ✓ Should return a specific category (9 ms)
+      ✓ Should return 404 for non-existent category (20 ms)
+    POST /categories
+      ✕ Should create a new category with admin token (2 ms)
+      ✓ Should reject creation without admin token (*** ms)
+      ✕ Should reject duplicate slug (4 ms)
+    PUT /categories/:id
+      ✕ Should update a category with admin token (3 ms)
+      ✓ Should reject update without admin token (11 ms)
+    DELETE /categories/:id
+      ✕ Should delete a category with admin token (2 ms)
+      ✓ Should reject deletion without admin token (9 ms)
+  ● Categories API - Functional Tests › POST /categories › Should create a new category with admin token
+    TypeError: Invalid value "undefined" for header "Authorization"
+      at Test.setHeader [as request] (node_modules/superagent/src/node/index.js:830:39)
+      at Test.request [as end] (node_modules/superagent/src/node/index.js:965:8)
+      at Test.end (node_modules/supertest/lib/test.js:136:11)
+      at end (node_modules/superagent/src/request-base.js:283:12)
+      at Test.RequestBase.then (node_modules/superagent/src/request-base.js:265:31)
+  ● Categories API - Functional Tests › POST /categories › Should reject duplicate slug
+    TypeError: Invalid value "undefined" for header "Authorization"
+      at Test.setHeader [as request] (node_modules/superagent/src/node/index.js:830:39)
+      at Test.request [as end] (node_modules/superagent/src/node/index.js:965:8)
+      at Test.end (node_modules/supertest/lib/test.js:136:11)
+      at end (node_modules/superagent/src/request-base.js:283:12)
+      at Test.RequestBase.then (node_modules/superagent/src/request-base.js:265:31)
+  ● Categories API - Functional Tests › PUT /categories/:id › Should update a category with admin token
+    TypeError: Invalid value "undefined" for header "Authorization"
+      at Test.setHeader [as request] (node_modules/superagent/src/node/index.js:830:39)
+      at Test.request [as end] (node_modules/superagent/src/node/index.js:965:8)
+      at Test.end (node_modules/supertest/lib/test.js:136:11)
+      at end (node_modules/superagent/src/request-base.js:283:12)
+      at Test.RequestBase.then (node_modules/superagent/src/request-base.js:265:31)
+  ● Categories API - Functional Tests › DELETE /categories/:id › Should delete a category with admin token
+    TypeError: Invalid value "undefined" for header "Authorization"
+      at Test.setHeader [as request] (node_modules/superagent/src/node/index.js:830:39)
+      at Test.request [as end] (node_modules/superagent/src/node/index.js:965:8)
+      at Test.end (node_modules/supertest/lib/test.js:136:11)
+      at end (node_modules/superagent/src/request-base.js:283:12)
+      at Test.RequestBase.then (node_modules/superagent/src/request-base.js:265:31)
+  console.log
+    Database connection OK
+      at log (src/app.js:21:22)
+FAIL tests/functionnal/images.test.js
+  Images API - Functional Tests
+    POST /images
+      ✕ Should add an image to annonce with admin token (13 ms)
+      ✓ Should reject image creation without admin token (12 ms)
+    GET /images/:annonceId
+      ✓ Should return images for a specific annonce (public) (14 ms)
+      ✓ Should return empty array for annonce with no images (36 ms)
+    DELETE /images/:id
+      ✕ Should delete an image with admin token (4 ms)
+      ✓ Should reject deletion without admin token (19 ms)
+      ✕ Should return 404 for non-existent image (5 ms)
+  ● Images API - Functional Tests › POST /images › Should add an image to annonce with admin token
+    TypeError: Invalid value "undefined" for header "Authorization"
+      at Test.setHeader [as request] (node_modules/superagent/src/node/index.js:830:39)
+      at Test.request [as end] (node_modules/superagent/src/node/index.js:965:8)
+      at Test.end (node_modules/supertest/lib/test.js:136:11)
+      at end (node_modules/superagent/src/request-base.js:283:12)
+      at Test.RequestBase.then (node_modules/superagent/src/request-base.js:265:31)
+  ● Images API - Functional Tests › DELETE /images/:id › Should delete an image with admin token
+    TypeError: Invalid value "undefined" for header "Authorization"
+      at Test.setHeader [as request] (node_modules/superagent/src/node/index.js:830:39)
+      at Test.request [as end] (node_modules/superagent/src/node/index.js:965:8)
+      at Test.end (node_modules/supertest/lib/test.js:136:11)
+      at end (node_modules/superagent/src/request-base.js:283:12)
+      at Test.RequestBase.then (node_modules/superagent/src/request-base.js:265:31)
+  ● Images API - Functional Tests › DELETE /images/:id › Should return 404 for non-existent image
+    TypeError: Invalid value "undefined" for header "Authorization"
+      at Test.setHeader [as request] (node_modules/superagent/src/node/index.js:830:39)
+      at Test.request [as end] (node_modules/superagent/src/node/index.js:965:8)
+      at Test.end (node_modules/supertest/lib/test.js:136:11)
+      at end (node_modules/superagent/src/request-base.js:283:12)
+      at Test.RequestBase.then (node_modules/superagent/src/request-base.js:265:31)
+  console.log
+    Database connection OK
+      at log (src/app.js:21:22)
+FAIL tests/functionnal/signalements.test.js
+  Signalements API - Functional Tests
+    POST /signalements
+      ✓ Should create a signalement (public endpoint) (26 ms)
+      ✓ Should reject signalement without required fields (*** ms)
+    GET /signalements
+      ✕ Should return list of signalements for admin (2 ms)
+      ✓ Should reject access without admin token (7 ms)
+    PATCH /signalements/:id
+      ✕ Should update signalement status for admin (2 ms)
+      ✓ Should reject update without admin token (17 ms)
+  ● Signalements API - Functional Tests › GET /signalements › Should return list of signalements for admin
+    TypeError: Invalid value "undefined" for header "Authorization"
+      at Test.setHeader [as request] (node_modules/superagent/src/node/index.js:830:39)
+      at Test.request [as end] (node_modules/superagent/src/node/index.js:965:8)
+      at Test.end (node_modules/supertest/lib/test.js:136:11)
+      at end (node_modules/superagent/src/request-base.js:283:12)
+      at Test.RequestBase.then (node_modules/superagent/src/request-base.js:265:31)
+  ● Signalements API - Functional Tests › PATCH /signalements/:id › Should update signalement status for admin
+    TypeError: Invalid value "undefined" for header "Authorization"
+      at Test.setHeader [as request] (node_modules/superagent/src/node/index.js:830:39)
+      at Test.request [as end] (node_modules/superagent/src/node/index.js:965:8)
+      at Test.end (node_modules/supertest/lib/test.js:136:11)
+      at end (node_modules/superagent/src/request-base.js:283:12)
+      at Test.RequestBase.then (node_modules/superagent/src/request-base.js:265:31)
+FAIL tests/unit/categories.test.js
+  Categories Service - Unit Tests
+    getAll
+      ✕ Should return all categories
+    getById
+      ✕ Should return category by id (1 ms)
+      ✕ Should return null for non-existent category
+    create
+      ✕ Should create a new category
+    update
+      ✕ Should update category successfully (1 ms)
+      ✕ Should return null for non-existent category
+    delete
+      ✕ Should delete category successfully
+      ✕ Should return *** for non-existent category (1 ms)
+  ● Categories Service - Unit Tests › getAll › Should return all categories
+    TypeError: categoriesService.getAll is not a function
+      18 |             Category.findAll = jest.fn().mockResolvedValue(mockCategories);
+      19 |
+    > 20 |             const result = await categoriesService.getAll();
+         |                                                    ^
+      21 |
+      22 |             expect(Category.findAll).toHaveBeenCalledWith({
+      23 |                 order: [['name', 'ASC']]
+      at Object.getAll (tests/unit/categories.test.js:20:52)
+  ● Categories Service - Unit Tests › getById › Should return category by id
+    TypeError: categoriesService.getById is not a function
+      33 |             Category.findByPk = jest.fn().mockResolvedValue(mockCategory);
+      34 |
+    > 35 |             const result = await categoriesService.getById(1);
+         |                                                    ^
+      36 |
+      37 |             expect(Category.findByPk).toHaveBeenCalledWith(1);
+      38 |             expect(result).toEqual(mockCategory);
+      at Object.getById (tests/unit/categories.test.js:35:52)
+  ● Categories Service - Unit Tests › getById › Should return null for non-existent category
+    TypeError: categoriesService.getById is not a function
+      42 |             Category.findByPk = jest.fn().mockResolvedValue(null);
+      43 |
+    > 44 |             const result = await categoriesService.getById(999);
+         |                                                    ^
+      45 |
+      46 |             expect(result).toBeNull();
+      47 |         });
+      at Object.getById (tests/unit/categories.test.js:44:52)
+  ● Categories Service - Unit Tests › create › Should create a new category
+    TypeError: categoriesService.create is not a function
+      59 |             Category.create = jest.fn().mockResolvedValue(mockCategory);
+      60 |
+    > 61 |             const result = await categoriesService.create({
+         |                                                    ^
+      62 |                 name: 'Véhicules',
+      63 |                 slug: 'vehicules',
+      64 |                 description: 'Cars and bikes'
+      at Object.create (tests/unit/categories.test.js:61:52)
+  ● Categories Service - Unit Tests › update › Should update category successfully
+    TypeError: categoriesService.update is not a function
+      85 |             Category.findByPk = jest.fn().mockResolvedValue(mockCategory);
+      86 |
+    > 87 |             const result = await categoriesService.update(1, { name: 'Electronics Updated' });
+         |                                                    ^
+      88 |
+      89 |             expect(mockCategory.update).toHaveBeenCalledWith({ name: 'Electronics Updated' });
+      90 |             expect(result).toHaveProperty('name', 'Electronics Updated');
+      at Object.update (tests/unit/categories.test.js:87:52)
+  ● Categories Service - Unit Tests › update › Should return null for non-existent category
+    TypeError: categoriesService.update is not a function
+      94 |             Category.findByPk = jest.fn().mockResolvedValue(null);
+      95 |
+    > 96 |             const result = await categoriesService.update(999, { name: 'Test' });
+         |                                                    ^
+      97 |
+      98 |             expect(result).toBeNull();
+      99 |         });
+      at Object.update (tests/unit/categories.test.js:96:52)
+  ● Categories Service - Unit Tests › delete › Should delete category successfully
+    TypeError: categoriesService.delete is not a function
+      ***9 |             Category.findByPk = jest.fn().mockResolvedValue(mockCategory);
+      1*** |
+    > 111 |             const result = await categoriesService.delete(1);
+          |                                                          ^
+      112 |
+      113 |             expect(mockCategory.destroy).toHaveBeenCalled();
+      114 |             expect(result).toBe(true);
+      at Object.<anonymous> (tests/unit/categories.test.js:111:58)
+  ● Categories Service - Unit Tests › delete › Should return *** for non-existent category
+    TypeError: categoriesService.delete is not a function
+      118 |             Category.findByPk = jest.fn().mockResolvedValue(null);
+      119 |
+    > 120 |             const result = await categoriesService.delete(999);
+          |                                                          ^
+      121 |
+      122 |             expect(result).toBe(***);
+      123 |         });
+      at Object.<anonymous> (tests/unit/categories.test.js:120:58)
+  console.log
+    Database connection OK
+      at log (src/app.js:21:22)
+PASS tests/functionnal/auth.test.js
+  Auth API - Functional Tests
+    POST /register
+      ✓ Should create a new user successfully (83 ms)
+      ✓ Should reject registration with duplicate username (566 ms)
+      ✓ Should reject registration without required fields (6 ms)
+    POST /login
+      ✓ Should login successfully with valid credentials (83 ms)
+      ✓ Should reject login with wrong password (74 ms)
+      ✓ Should reject login with non-existent user (7 ms)
+    POST /logout
+      ✓ Should logout successfully with valid token (14 ms)
+      ✓ Should reject logout without token (9 ms)
+    GET /home
+      ✓ Should return welcome message (9 ms)
+FAIL tests/unit/signalements.test.js
+  Signalements Service - Unit Tests
+    create
+      ✕ Should create a new signalement (1 ms)
+    getAll
+      ✕ Should return all signalements with associations (1 ms)
+    updateStatus
+      ✕ Should update signalement status successfully (1 ms)
+      ✕ Should return null for non-existent signalement
+  ● Signalements Service - Unit Tests › create › Should create a new signalement
+    TypeError: signalementsService.create is not a function
+      21 |             Signalement.create = jest.fn().mockResolvedValue(mockSignalement);
+      22 |
+    > 23 |             const result = await signalementsService.create({
+         |                                                      ^
+      24 |                 annonce_id: 1,
+      25 |                 email: 'user@example.com',
+      26 |                 message: 'Inappropriate content'
+      at Object.create (tests/unit/signalements.test.js:23:54)
+  ● Signalements Service - Unit Tests › getAll › Should return all signalements with associations
+    TypeError: signalementsService.getAll is not a function
+      54 |             Signalement.findAll = jest.fn().mockResolvedValue(mockSignalements);
+      55 |
+    > 56 |             const result = await signalementsService.getAll();
+         |                                                      ^
+      57 |
+      58 |             expect(Signalement.findAll).toHaveBeenCalledWith({
+      59 |                 include: ['Annonce', 'Admin'],
+      at Object.getAll (tests/unit/signalements.test.js:56:54)
+  ● Signalements Service - Unit Tests › updateStatus › Should update signalement status successfully
+    TypeError: signalementsService.updateStatus is not a function
+      79 |             Signalement.findByPk = jest.fn().mockResolvedValue(mockSignalement);
+      80 |
+    > 81 |             const result = await signalementsService.updateStatus(1, {
+         |                                                      ^
+      82 |                 status: 'processed',
+      83 |                 admin_id: 1,
+      84 |                 response: 'Issue resolved'
+      at Object.updateStatus (tests/unit/signalements.test.js:81:54)
+  ● Signalements Service - Unit Tests › updateStatus › Should return null for non-existent signalement
+    TypeError: signalementsService.updateStatus is not a function
+       97 |             Signalement.findByPk = jest.fn().mockResolvedValue(null);
+       98 |
+    >  99 |             const result = await signalementsService.updateStatus(999, { status: 'processed' });
+          |                                                      ^
+      ***0 |
+      ***1 |             expect(result).toBeNull();
+      ***2 |         });
+      at Object.updateStatus (tests/unit/signalements.test.js:99:54)
+  console.log
+    Database connection OK
+      at log (src/app.js:21:22)
+FAIL tests/functionnal/admin-comments.test.js
+  Admin Comments API - Functional Tests
+    POST /admin-comments
+      ✕ Should create an admin comment with admin token (5 ms)
+      ✓ Should reject comment creation without admin token (5 ms)
+      ✕ Should reject comment without required fields (1 ms)
+    GET /admin-comments/:annonceId
+      ✕ Should return comments for a specific annonce (1 ms)
+      ✓ Should reject access without admin token (15 ms)
+  ● Admin Comments API - Functional Tests › POST /admin-comments › Should create an admin comment with admin token
+    TypeError: Invalid value "undefined" for header "Authorization"
+      at Test.setHeader [as request] (node_modules/superagent/src/node/index.js:830:39)
+      at Test.request [as end] (node_modules/superagent/src/node/index.js:965:8)
+      at Test.end (node_modules/supertest/lib/test.js:136:11)
+      at end (node_modules/superagent/src/request-base.js:283:12)
+      at Test.RequestBase.then (node_modules/superagent/src/request-base.js:265:31)
+  ● Admin Comments API - Functional Tests › POST /admin-comments › Should reject comment without required fields
+    TypeError: Invalid value "undefined" for header "Authorization"
+      at Test.setHeader [as request] (node_modules/superagent/src/node/index.js:830:39)
+      at Test.request [as end] (node_modules/superagent/src/node/index.js:965:8)
+      at Test.end (node_modules/supertest/lib/test.js:136:11)
+      at end (node_modules/superagent/src/request-base.js:283:12)
+      at Test.RequestBase.then (node_modules/superagent/src/request-base.js:265:31)
+  ● Admin Comments API - Functional Tests › GET /admin-comments/:annonceId › Should return comments for a specific annonce
+    TypeError: Invalid value "undefined" for header "Authorization"
+      at Test.setHeader [as request] (node_modules/superagent/src/node/index.js:830:39)
+      at Test.request [as end] (node_modules/superagent/src/node/index.js:965:8)
+      at Test.end (node_modules/supertest/lib/test.js:136:11)
+      at end (node_modules/superagent/src/request-base.js:283:12)
+      at Test.RequestBase.then (node_modules/superagent/src/request-base.js:265:31)
+FAIL tests/unit/images.test.js
+  Images Service - Unit Tests
+    create
+      ✕ Should create a new image (1 ms)
+    getByAnnonceId
+      ✕ Should return images for specific annonce ordered by ordering (1 ms)
+      ✕ Should return empty array when no images exist
+    delete
+      ✕ Should delete image successfully (1 ms)
+      ✕ Should return *** for non-existent image (1 ms)
+  ● Images Service - Unit Tests › create › Should create a new image
+    TypeError: imagesService.create is not a function
+      20 |             ImageAnnonce.create = jest.fn().mockResolvedValue(mockImage);
+      21 |
+    > 22 |             const result = await imagesService.create({
+         |                                                ^
+      23 |                 annonce_id: 1,
+      24 |                 url: 'https://example.com/image.jpg',
+      25 |                 ordering: 0
+      at Object.create (tests/unit/images.test.js:22:48)
+  ● Images Service - Unit Tests › getByAnnonceId › Should return images for specific annonce ordered by ordering
+    TypeError: imagesService.getByAnnonceId is not a function
+      45 |             ImageAnnonce.findAll = jest.fn().mockResolvedValue(mockImages);
+      46 |
+    > 47 |             const result = await imagesService.getByAnnonceId(1);
+         |                                                ^
+      48 |
+      49 |             expect(ImageAnnonce.findAll).toHaveBeenCalledWith({
+      50 |                 where: { annonce_id: 1 },
+      at Object.getByAnnonceId (tests/unit/images.test.js:47:48)
+  ● Images Service - Unit Tests › getByAnnonceId › Should return empty array when no images exist
+    TypeError: imagesService.getByAnnonceId is not a function
+      57 |             ImageAnnonce.findAll = jest.fn().mockResolvedValue([]);
+      58 |
+    > 59 |             const result = await imagesService.getByAnnonceId(999);
+         |                                                ^
+      60 |
+      61 |             expect(result).toEqual([]);
+      62 |         });
+      at Object.getByAnnonceId (tests/unit/images.test.js:59:48)
+  ● Images Service - Unit Tests › delete › Should delete image successfully
+    TypeError: imagesService.delete is not a function
+      72 |             ImageAnnonce.findByPk = jest.fn().mockResolvedValue(mockImage);
+      73 |
+    > 74 |             const result = await imagesService.delete(1);
+         |                                                      ^
+      75 |
+      76 |             expect(mockImage.destroy).toHaveBeenCalled();
+      77 |             expect(result).toBe(true);
+      at Object.<anonymous> (tests/unit/images.test.js:74:54)
+  ● Images Service - Unit Tests › delete › Should return *** for non-existent image
+    TypeError: imagesService.delete is not a function
+      81 |             ImageAnnonce.findByPk = jest.fn().mockResolvedValue(null);
+      82 |
+    > 83 |             const result = await imagesService.delete(999);
+         |                                                      ^
+      84 |
+      85 |             expect(result).toBe(***);
+      86 |         });
+      at Object.<anonymous> (tests/unit/images.test.js:83:54)
+FAIL tests/unit/adminComments.test.js
+  AdminComments Service - Unit Tests
+    create
+      ✕ Should create a new admin comment (1 ms)
+    getByAnnonceId
+      ✕ Should return comments for specific annonce (1 ms)
+      ✕ Should return empty array when no comments exist
+  ● AdminComments Service - Unit Tests › create › Should create a new admin comment
+    TypeError: adminCommentsService.create is not a function
+      20 |             AdminComment.create = jest.fn().mockResolvedValue(mockComment);
+      21 |
+    > 22 |             const result = await adminCommentsService.create({
+         |                                                       ^
+      23 |                 annonce_id: 1,
+      24 |                 admin_id: 1,
+      25 |                 comment: 'This needs review'
+      at Object.create (tests/unit/adminComments.test.js:22:55)
+  ● AdminComments Service - Unit Tests › getByAnnonceId › Should return comments for specific annonce
+    TypeError: adminCommentsService.getByAnnonceId is not a function
+      54 |             AdminComment.findAll = jest.fn().mockResolvedValue(mockComments);
+      55 |
+    > 56 |             const result = await adminCommentsService.getByAnnonceId(1);
+         |                                                       ^
+      57 |
+      58 |             expect(AdminComment.findAll).toHaveBeenCalledWith({
+      59 |                 where: { annonce_id: 1 },
+      at Object.getByAnnonceId (tests/unit/adminComments.test.js:56:55)
+  ● AdminComments Service - Unit Tests › getByAnnonceId › Should return empty array when no comments exist
+    TypeError: adminCommentsService.getByAnnonceId is not a function
+      67 |             AdminComment.findAll = jest.fn().mockResolvedValue([]);
+      68 |
+    > 69 |             const result = await adminCommentsService.getByAnnonceId(999);
+         |                                                       ^
+      70 |
+      71 |             expect(result).toEqual([]);
+      72 |         });
+      at Object.getByAnnonceId (tests/unit/adminComments.test.js:69:55)
+Test Suites: 9 failed, 2 passed, 11 total
+Tests:       48 failed, 41 passed, 89 total
+Snapshots:   0 total
+Time:        4.805 s
+Ran all test suites.
+Jest has detected the following 12 open handles potentially keeping Jest from exiting:
+  ●  TCPSERVERWRAP
+      59 |         test('Should create a new category with admin token', async () => {
+      60 |             const response = await request(app)
+    > 61 |                 .post('/categories')
+         |                  ^
+      62 |                 .set('Authorization', adminToken)
+      63 |                 .send({
+      64 |                     name: 'Test Category',
+      at Test.serverAddress (node_modules/supertest/lib/test.js:63:35)
+      at new Test (node_modules/supertest/lib/test.js:49:14)
+      at Object.obj.<computed> [as post] (node_modules/supertest/index.js:40:18)
+      at Object.post (tests/functionnal/categories.test.js:61:18)
+  ●  TCPSERVERWRAP
+      87 |             
+      88 |             await request(app)
+    > 89 |                 .post('/categories')
+         |                  ^
+      90 |                 .set('Authorization', adminToken)
+      91 |                 .send({
+      92 |                     name: 'First Category',
+      at Test.serverAddress (node_modules/supertest/lib/test.js:63:35)
+      at new Test (node_modules/supertest/lib/test.js:49:14)
+      at Object.obj.<computed> [as post] (node_modules/supertest/index.js:40:18)
+      at Object.post (tests/functionnal/categories.test.js:89:18)
+  ●  TCPSERVERWRAP
+      1*** |             if (!testCategoryId) {
+      111 |                 const createResponse = await request(app)
+    > 112 |                     .post('/categories')
+          |                      ^
+      113 |                     .set('Authorization', adminToken)
+      114 |                     .send({
+      115 |                         name: 'To Update',
+      at Test.serverAddress (node_modules/supertest/lib/test.js:63:35)
+      at new Test (node_modules/supertest/lib/test.js:49:14)
+      at Object.obj.<computed> [as post] (node_modules/supertest/index.js:40:18)
+      at Object.post (tests/functionnal/categories.test.js:112:22)
+  ●  TCPSERVERWRAP
+      145 |         test('Should delete a category with admin token', async () => {
+      146 |             const createResponse = await request(app)
+    > 147 |                 .post('/categories')
+          |                  ^
+      148 |                 .set('Authorization', adminToken)
+      149 |                 .send({
+      150 |                     name: 'To Delete',
+      at Test.serverAddress (node_modules/supertest/lib/test.js:63:35)
+      at new Test (node_modules/supertest/lib/test.js:49:14)
+      at Object.obj.<computed> [as post] (node_modules/supertest/index.js:40:18)
+      at Object.post (tests/functionnal/categories.test.js:147:18)
+  ●  TCPSERVERWRAP
+      39 |         test('Should add an image to annonce with admin token', async () => {
+      40 |             const response = await request(app)
+    > 41 |                 .post('/images')
+         |                  ^
+      42 |                 .set('Authorization', adminToken)
+      43 |                 .send({
+      44 |                     annonce_id: testAnnonceId,
+      at Test.serverAddress (node_modules/supertest/lib/test.js:63:35)
+      at new Test (node_modules/supertest/lib/test.js:49:14)
+      at Object.obj.<computed> [as post] (node_modules/supertest/index.js:40:18)
+      at Object.post (tests/functionnal/images.test.js:41:18)
+  ●  TCPSERVERWRAP
+      ***1 |         test('Should delete an image with admin token', async () => {
+      ***2 |             const createResponse = await request(app)
+    > ***3 |                 .post('/images')
+          |                  ^
+      ***4 |                 .set('Authorization', adminToken)
+      ***5 |                 .send({
+      ***6 |                     annonce_id: testAnnonceId,
+      at Test.serverAddress (node_modules/supertest/lib/test.js:63:35)
+      at new Test (node_modules/supertest/lib/test.js:49:14)
+      at Object.obj.<computed> [as post] (node_modules/supertest/index.js:40:18)
+      at Object.post (tests/functionnal/images.test.js:***3:18)
+  ●  TCPSERVERWRAP
+      123 |         test('Should return 404 for non-existent image', async () => {
+      124 |             await request(app)
+    > 125 |                 .delete('/images/99999')
+          |                        ^
+      126 |                 .set('Authorization', adminToken)
+      127 |                 .expect(404);
+      128 |         });
+      at Test.serverAddress (node_modules/supertest/lib/test.js:63:35)
+      at new Test (node_modules/supertest/lib/test.js:49:14)
+      at Object.obj.<computed> (node_modules/supertest/index.js:40:18)
+      at Object.<anonymous> (tests/functionnal/images.test.js:125:24)
+  ●  TCPSERVERWRAP
+      68 |         test('Should return list of signalements for admin', async () => {
+      69 |             const response = await request(app)
+    > 70 |                 .get('/signalements')
+         |                  ^
+      71 |                 .set('Authorization', adminToken)
+      72 |                 .expect(200);
+      73 |
+      at Test.serverAddress (node_modules/supertest/lib/test.js:63:35)
+      at new Test (node_modules/supertest/lib/test.js:49:14)
+      at Object.obj.<computed> [as get] (node_modules/supertest/index.js:40:18)
+      at Object.get (tests/functionnal/signalements.test.js:70:18)
+  ●  TCPSERVERWRAP
+      ***1 |
+      ***2 |             const response = await request(app)
+    > ***3 |                 .patch(`/signalements/${testSignalementId}`)
+          |                  ^
+      ***4 |                 .set('Authorization', adminToken)
+      ***5 |                 .send({
+      ***6 |                     status: 'processed',
+      at Test.serverAddress (node_modules/supertest/lib/test.js:63:35)
+      at new Test (node_modules/supertest/lib/test.js:49:14)
+      at Object.obj.<computed> [as patch] (node_modules/supertest/index.js:40:18)
+      at Object.patch (tests/functionnal/signalements.test.js:***3:18)
+  ●  TCPSERVERWRAP
+      39 |         test('Should create an admin comment with admin token', async () => {
+      40 |             const response = await request(app)
+    > 41 |                 .post('/admin-comments')
+         |                  ^
+      42 |                 .set('Authorization', adminToken)
+      43 |                 .send({
+      44 |                     annonce_id: testAnnonceId,
+      at Test.serverAddress (node_modules/supertest/lib/test.js:63:35)
+      at new Test (node_modules/supertest/lib/test.js:49:14)
+      at Object.obj.<computed> [as post] (node_modules/supertest/index.js:40:18)
+      at Object.post (tests/functionnal/admin-comments.test.js:41:18)
+  ●  TCPSERVERWRAP
+      65 |         test('Should reject comment without required fields', async () => {
+      66 |             await request(app)
+    > 67 |                 .post('/admin-comments')
+         |                  ^
+      68 |                 .set('Authorization', adminToken)
+      69 |                 .send({
+      70 |                     annonce_id: testAnnonceId
+      at Test.serverAddress (node_modules/supertest/lib/test.js:63:35)
+      at new Test (node_modules/supertest/lib/test.js:49:14)
+      at Object.obj.<computed> [as post] (node_modules/supertest/index.js:40:18)
+      at Object.post (tests/functionnal/admin-comments.test.js:67:18)
+  ●  TCPSERVERWRAP
+      77 |         test('Should return comments for a specific annonce', async () => {
+      78 |             const response = await request(app)
+    > 79 |                 .get(`/admin-comments/${testAnnonceId}`)
+         |                  ^
+      80 |                 .set('Authorization', adminToken)
+      81 |                 .expect(200);
+      82 |
+      at Test.serverAddress (node_modules/supertest/lib/test.js:63:35)
+      at new Test (node_modules/supertest/lib/test.js:49:14)
+      at Object.obj.<computed> [as get] (node_modules/supertest/index.js:40:18)
+      at Object.get (tests/functionnal/admin-comments.test.js:79:18)
+Error: Process completed with exit code 1.

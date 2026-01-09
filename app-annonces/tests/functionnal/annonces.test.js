@@ -14,7 +14,7 @@ describe('Annonces API - Functional Tests', () => {
         const loginResponse = await request(app)
             .post('/login')
             .send({
-                username: 'contact@soufian-a.net',
+                username: 'contact@arsdv.site',
                 password: 'MotDePasse123'
             });
         adminToken = loginResponse.body.token;
@@ -24,7 +24,7 @@ describe('Annonces API - Functional Tests', () => {
         testCategoryId = category ? category.id : null;
 
         // Get admin user id
-        const admin = await User.findOne({ where: { username: 'contact@soufian-a.net' } });
+        const admin = await User.findOne({ where: { username: 'contact@arsdv.site' } });
         testUserId = admin.id;
     });
 

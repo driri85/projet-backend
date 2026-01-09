@@ -12,7 +12,7 @@ describe('Admin Comments API - Functional Tests', () => {
         const loginResponse = await request(app)
             .post('/login')
             .send({
-                username: 'contact@soufian-a.net',
+                username: 'contact@arsdv.site',
                 password: 'MotDePasse123'
             });
         adminToken = loginResponse.body.token;

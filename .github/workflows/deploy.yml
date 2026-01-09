@@ -36,8 +36,10 @@ jobs:
           timeout 60 bash -c 'until docker exec app-annonces-db mariadb -uroot -proot -e "SELECT 1" 2>/dev/null; do echo "Waiting..."; sleep 2; done'
           echo "Database is ready!"
 
-      - name: Run migrations
-        run: docker exec app-annonces-API-nodejs npx sequelize-cli db:migrate
+      - name: Reset and run migrations
+        run: |
+          docker exec app-annonces-API-nodejs npx sequelize-cli db:migrate:undo:all || true
+          docker exec app-annonces-API-nodejs npx sequelize-cli db:migrate
 
       - name: Run seeders
         run: docker exec app-annonces-API-nodejs npx sequelize-cli db:seed:all

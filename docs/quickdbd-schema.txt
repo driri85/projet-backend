@@ -1,0 +1,56 @@
+users
+  id PK int
+  email UNIQUE string
+  password string
+  nom string
+  prenom string
+  telephone string nullable
+  role enum
+  date_creation timestamp
+  date_modification timestamp
+  actif boolean
+
+categories
+  id PK int
+  nom string
+  description text nullable
+  slug UNIQUE string
+  date_creation timestamp
+
+annonces
+  id PK int
+  titre string
+  description text
+  prix decimal
+  user_id FK >- users.id
+  categorie_id FK >- categories.id
+  statut enum
+  date_creation timestamp
+  date_modification timestamp
+  date_publication timestamp nullable
+  nombre_vues int
+
+commentaires_admin
+  id PK int
+  annonce_id FK >- annonces.id
+  admin_id FK >- users.id
+  commentaire text
+  date_creation timestamp
+
+signalements
+  id PK int
+  annonce_id FK >- annonces.id
+  email string
+  message text
+  statut enum
+  date_creation timestamp
+  date_traitement timestamp nullable
+  admin_id FK >- users.id
+  reponse text nullable
+
+images_annonces
+  id PK int
+  annonce_id FK >- annonces.id
+  url string
+  ordre int
+  date_creation timestamp

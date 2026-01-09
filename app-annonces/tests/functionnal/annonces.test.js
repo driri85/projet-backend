@@ -204,10 +204,10 @@ describe('Annonces API - Functional Tests', () => {
         });
     });
 
-    describe("POST /annonces/multiplicate", () => {
+    describe('POST /annonces/multiplicate', () => {
         test("Retourne le résultat 8 pour l'opération 2x4", async () => {
             const result = await request(app)
-                .post("/annonces/multiplicate")
+                .post('/annonces/multiplicate')
                 .send({ items: [2, 4] })
                 .expect(200);
 
@@ -216,8 +216,8 @@ describe('Annonces API - Functional Tests', () => {
 
         test("Retourne un code erreur 400 si j'envoi des items au mauvais format", async () => {
             await request(app)
-                .post("/annonces/multiplicate")
-                .send({ items: ["A", "B"] })
+                .post('/annonces/multiplicate')
+                .send({ items: ['A', 'B'] })
                 .expect(400);
         });
     });
